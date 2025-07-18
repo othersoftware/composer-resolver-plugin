@@ -16,7 +16,7 @@ You can install a plugin as a global composer dependency.
 **Remember to allow the plugin to be used!**
 
 ```Bash
-composer global require othersoftware/composer-plugin-resolver
+composer global require othersoftware/composer-resolver-plugin
 ```
 
 ## Usage
