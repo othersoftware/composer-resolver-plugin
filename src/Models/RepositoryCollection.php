@@ -19,6 +19,18 @@ final class RepositoryCollection implements \Countable
     }
 
 
+    public function removeByPath(Repository $repository): self
+    {
+        foreach ($this->items as $key => $item) {
+            if ($item->path === $repository->path) {
+                unset($this->items[$key]);
+            }
+        }
+
+        return $this;
+    }
+
+
     /**
      * @return Repository[]
      */

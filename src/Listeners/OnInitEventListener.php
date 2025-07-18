@@ -39,6 +39,11 @@ final class OnInitEventListener
     public function handle(): void
     {
         foreach ($this->repositories->all() as $local) {
+            if (! file_exists($local->path) || ! is_dir($local->path)) {
+                $this->repositories->removeByPath($local);
+                continue;
+            }
+
             $this->manager->prependRepository($this->createRepository($local));
         }
     }

@@ -20,16 +20,6 @@ final class Repositories
     private RepositoryCollection $repositories;
 
 
-    public static function getInstance(): Repositories
-    {
-        if (! isset(self::$instance)) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
     public function __construct()
     {
         $path = Utilities::base('database/repositories.json');
@@ -47,6 +37,16 @@ final class Repositories
     }
 
 
+    public static function getInstance(): Repositories
+    {
+        if (! isset(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+
     /**
      * @param Repository $repository
      *
@@ -55,6 +55,14 @@ final class Repositories
     public function add(Repository $repository): Repositories
     {
         $this->repositories->add($repository);
+
+        return $this;
+    }
+
+
+    public function removeByPath(Repository $repository): Repositories
+    {
+        $this->repositories->removeByPath($repository);
 
         return $this;
     }
